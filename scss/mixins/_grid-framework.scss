@@ -1,0 +1,68 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    padding: {
+      right: ($gutter / 2);
+      left: ($gutter / 2);
+    }
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+
+    @include media-breakpoint-down($breakpoint, $breakpoints) {
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
+          width: percentage($i / $columns);
+        }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        .col#{$infix}-push-#{$i} {
+          @if $i == 0 {
+            left: auto;
+          } @else {
+            left: percentage($i / $columns);
+          }
+        }
+      }
+
+      @for $i from 0 through ($columns - 1) {
+        .col#{$infix}-pull-#{$i} {
+          @if $i == 0 {
+            right: auto;
+          } @else {
+            right: percentage($i / $columns);
+          }
+        }
+      }
+
+      @for $i from 0 through ($columns - 1) {
+        .col#{$infix}-offset-#{$i} {
+          @if $i == 0 {
+            margin-left: 0;
+          } @else {
+            margin-left: percentage($i / $columns);
+          }
+        }
+      }
+    }
+  }
+}

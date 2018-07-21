@@ -1,0 +1,11 @@
+/*!
+ * bootstrap-kr
+ *
+ * @description
+ *  Bootstrap framework modified to korean websites' needs.
+ *  Based on Bootstrap v4 (http://getbootstrap.com)
+ *  Partially downgraded to Bootstrap v3 to support IE 8-9.
+ *
+ * @license
+ *  MIT license
+ */

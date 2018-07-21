@@ -1,0 +1,27 @@
+{
+    "format": {
+        "breaks": {
+            "afterAtRule": true,
+            "afterBlockBegins": true,
+            "afterBlockEnds": true,
+            "afterComment": true,
+            "afterProperty": false,
+            "afterRuleBegins": false,
+            "afterRuleEnds": true,
+            "beforeBlockEnds": true,
+            "betweenSelectors": true
+        },
+        "spaces": {
+            "aroundSelectorRelation": true,
+            "beforeBlockBegins": true,
+            "beforeValue": false
+        }
+    },
+    "level": {
+        "1": {
+            "removeQuotes": false,
+            "tidySelectors": false,
+            "specialComments": "all"
+        }
+    }
+}

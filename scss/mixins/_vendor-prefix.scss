@@ -1,0 +1,31 @@
+// Vendor Prefixes
+//
+// Mixins below contains workaround or hacks that cannot be handled by Autoprefixer
+
+// Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter hack (NOT handled by Autoprefixer)
+  $opacity-ie: ($opacity * 100);
+  filter: alpha(opacity=$opacity-ie);
+}
+
+// Placeholder text
+@mixin placeholder($color: $input-color-placeholder) {
+  // Chrome and Safari
+  &::-webkit-input-placeholder  {
+    color: $color;
+  }
+  // Firefox <= -18
+  &:-moz-placeholder {
+      @content;
+  }
+  // Firefox <= 50
+  &::-moz-placeholder {
+    color: $color;
+  }
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
